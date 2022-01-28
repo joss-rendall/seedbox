@@ -1,0 +1,32 @@
+version: '3.7'
+services:
+  deluge:
+    image: binhex/arch-delugevpn:latest
+    container_name: delugevpnuser1
+    restart: unless-stopped
+    networks:
+      - ${NETWORK}
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - 8112:8112
+      - 8118:8118
+      - 58846:58846
+      - 58946:58946
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - VPN_ENABLED=yes
+      - VPN_USER=${VPN_USER}
+      - VPN_PASS=${VPN_PASS}
+      - VPN_PROV=${VPN_PROV}
+      - STRICT_PORT_FORWARD=yes
+      - ENABLE_PRIVOXY=yes
+      - LAN_NETWORK=${LAN_NETWORK}
+      - NAME_SERVERS=209.222.18.222,37.235.1.174,8.8.8.8,209.222.18.218,37.235.1.177,8.8.4.4
+      - UMASK=000
+      - DEBUG=false
+    volumes:
+      - /data/config/delugevpnuser1/config:/config
+      - /etc/localtime:/etc/localtime:ro
+      - /data/config/nextcloud-data/${USER1}/files/seedbox:/data
