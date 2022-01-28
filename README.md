@@ -1,7 +1,12 @@
 # Seedbox
 
+Developement to add multiple user with a seedbox Deluge behind a VPN for each, and store downloaded torrent in Nextcloud Account for each user.
+
+Based on Seedbox by [jfroment/seedbox](https://github.com/jfroment/seedbox) 
 A collection of Dockerfiles and a docker-compose configuration to set up a
 seedbox and personal media server.
+
+
 
 ## Included Applications
 
@@ -9,6 +14,8 @@ seedbox and personal media server.
 -----------------------|----------------------------|------------------------------------------------------------------------|-------------------------|---------------------|
 | Plex                 | plex.yourdomain.com        | [linuxserver/plex](https://hub.docker.com/r/linuxserver/plex)          | *latest*                | Media Streaming     |
 | Deluge               | deluge.yourdomain.com      | [linuxserver/deluge](https://hub.docker.com/r/linuxserver/deluge)      | *latest*                | Torrents downloader |
+| DelugeVPN User1      | user1.yourdomain.com       | [binhex/arch-delugevpn](binhex/arch-delugevpn)                         | *latest*                | Torrents downloader |
+| DelugeVPN User2      | user2.yourdomain.com       | [binhex/arch-delugevpn](binhex/arch-delugevpn)                         | *latest*                | Torrents downloader |
 | Flood               | flood.yourdomain.com      | [jesec/flood](https://hub.docker.com/r/jesec/flood)      | *latest*      | Web client for Deluge (experimental) |
 | Sonarr               | sonarr.yourdomain.com      | [linuxserver/sonarr](https://hub.docker.com/r/linuxserver/sonarr)      | *develop*               | TV Shows monitor    |
 | Radarr               | radarr.yourdomain.com      | [linuxserver/radarr](https://hub.docker.com/r/linuxserver/radarr)      | *develop*                | Movies monitor      |
