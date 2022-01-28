@@ -1,6 +1,6 @@
 version: '3.7'
 services:
-  deluge:
+  delugevpnuser1:
     image: binhex/arch-delugevpn:latest
     container_name: delugevpnuser1
     restart: unless-stopped
@@ -8,11 +8,6 @@ services:
       - ${NETWORK}
     cap_add:
       - NET_ADMIN
-    ports:
-      - 8112:8112
-      - 8118:8118
-      - 58846:58846
-      - 58946:58946
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
@@ -27,6 +22,20 @@ services:
       - UMASK=000
       - DEBUG=false
     volumes:
-      - /data/config/delugevpnuser1/config:/config
+      - /configdelugevpnuser1:/config
       - /etc/localtime:/etc/localtime:ro
-      - /data/config/nextcloud-data/${USER1}/files/seedbox:/data
+      - /seedbox:/data
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.delugevpnuser1.rule=Host(`${USER1}.${TRAEFIK_DOMAIN}`)"
+      - "traefik.http.routers.delugevpnuser1.middlewares=common-auth@file"
+      
+volumes:
+  configdelugevpnuser1:
+    driver: local-persist
+    driver_opts:
+      mountpoint: /data/config/configdelugevpnuser1
+  seedbox:
+    driver: local-persist
+    driver_opts:
+      mountpoint: /data/config/nextcloud-data/${USER1}/files/seedbox
