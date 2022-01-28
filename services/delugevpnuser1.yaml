@@ -22,7 +22,7 @@ services:
       - UMASK=000
       - DEBUG=false
     volumes:
-      - /configdelugevpnuser1:/config
+      - /delugevpnuser1:/config
       - /etc/localtime:/etc/localtime:ro
       - /seedbox:/data
     labels:
@@ -31,10 +31,10 @@ services:
       - "traefik.http.routers.delugevpnuser1.middlewares=common-auth@file"
       
 volumes:
-  configdelugevpnuser1:
+  delugevpnuser1:
     driver: local-persist
     driver_opts:
-      mountpoint: /data/config/configdelugevpnuser1
+      mountpoint: /data/config/delugevpnuser1
   seedbox:
     driver: local-persist
     driver_opts:
